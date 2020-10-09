@@ -32,9 +32,10 @@ et adaptez-le à votre besoin
   * une image
   * un descriptif
   * un 
-12. Renseigner la variable  `DATABASE_URL` dans le fichier `.env`
-  * db_user
-  * db_password
-  * db_name
+12. Renseigner les variables  `DATABASE_URL` dans le fichier `.env`
+  * db_user (root)
+  * db_password ()
+  * db_name (rentabag)
 13. Grâce à l'ORM (Object Relation Mapping) Php Doctrine, créer la db
   * `php bin/console doctrine database:create`
+14. Créer les tables (ou Entity ou Classe) grâce à `php bin/console doctrine make:entity`
