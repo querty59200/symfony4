@@ -63,5 +63,32 @@ Le framework compare la db aux classes du projet
 `php php/bin doctrine:migrations:migrate`
 20. Ajouter des entrées fausses (fixtures) dans la table
   * Au préalable, télécharger la librairie `composer require orm-fixtures --dev` disponible uniquement en mode `dev`
-  * le fichier `composer.json` a été mis à jour
+  * Le fichier `composer.json` a été mis à jour
+  * Créer une fixture `php php/bin make:fixtures`
+  * Editer `BagageFixtures`
+  ```php
+  // Ajouter use App\Entity\Bagage
+class BagageFixtures extends Fixture
+{
+    public function load(ObjectManager $manager)
+    {
+        for($i = 0; $i < 50 ; $i++){
+            $bagage = new Bagage();
+            $bagage->getCreateAt(new \DateTime())
+                ->getHeigth(1 + $i * 10)
+                ->getLength(2 + $i * 10)
+                ->getWeigth(1 + $i * 20)
+                ->getWidth(3 + $i * 5);
+
+            $manager->persist($bagage);
+        }
+
+        $manager->flush();
+    }
+}
+```
+  * Charger la fixture dans la db `php bin/console doctrine:fixtures:load`
+  * Il est possible de s'aider de la librairie Faker `composer require fzaninotto/faker`
+  Nettoyer le cache de composer si nécessaire avant d'installer Faker `composer clearcache`
+
   
