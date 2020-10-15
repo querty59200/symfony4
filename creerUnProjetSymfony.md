@@ -106,8 +106,6 @@ class BagageFixtures extends Fixture
       }
 
       $manager->flush();
-  }
+   }
 }
 ```
-
-  
