@@ -53,4 +53,15 @@ On travailler ici avec les `paths` et non les URL car la maintenance est facilit
   * db_password
   * db_name
   * ex : `DATABASE_URL=mysql://`root`:`azerty`@127.0.0.1:3306/`rentabag`?serverVersion=5.7`
-00. Créer les tables (ou Entity ou Classe) grâce à `php bin/console doctrine make:entity`
+17. Créer les tables (ou Entity ou Classe) grâce à `php bin/console make:entity`
+  * Renseigner les attributs de l'entité en précisant le nom et le type
+Attention un attribut comme `createAt` devient `create_at` dans la table
+18. Créer le fichier de script préalable à la création de la db (plus tard à la mise à jour)
+  * `php bin/console make:migration`
+Le framework compare la db aux classes du projet
+19. Grâce à Doctrine, execute les scripts 
+`php php/bin doctrine:migrations:migrate`
+20. Ajouter des entrées fausses (fixtures) dans la table
+  * Au préalable, télécharger la librairie `composer require orm-fixtures --dev` disponible uniquement en mode `dev`
+  * le fichier `composer.json` a été mis à jour
+  
