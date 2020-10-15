@@ -19,7 +19,7 @@ return $this->render('pages/home.html.twig');
 9. Adapter le fichier `base.html.twig` en y mettant tout le code redondant
   * le css `<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">`
   * le navbar, le footer
-10. Dans le fichier `base.html.twig`, mettre le `{% block body %}{% endblock %}` dans un `<div class="container"></div>`
+10. Dans la vue `base.html.twig`, mettre le `{% block body %}{% endblock %}` dans un `<div class="container"></div>`
 11. Faire hériter `home.html.twig` grâce à 
 ```php
 {% extends 'base.html.twig' %} 
@@ -27,15 +27,25 @@ return $this->render('pages/home.html.twig');
   (...) 
   {% endblock %}
 ```
-et adaptez-le à votre besoin
+et adaptez `home.html.twig` à votre besoin
   * un titre
-  * une image
-  * un descriptif
-  * un 
-12. Renseigner les variables  `DATABASE_URL` dans le fichier `.env`
+  * une image de bagage
+  * un descriptif du bagage
+  * un bouton `value="Plus de détails"`
+12. Créer une vue `show.html.twig` permettant d'afficher un bagage
+13. Ajouter une route dans le `PagesController`
+```php
+/**
+*@Route("/show/12", path="show_bagage")
+*/
+```
+14. Modifier le bouton en ajoutant `href="{{ show_bagage }}`
+On travailler ici avec les `paths` et non les URL car la maintenance est facilitée
+
+00. Renseigner les variables  `DATABASE_URL` dans le fichier `.env`
   * db_user (root)
   * db_password ()
   * db_name (rentabag)
-13. Grâce à l'ORM (Object Relation Mapping) Php Doctrine, créer la db
+00. Grâce à l'ORM (Object Relation Mapping) Php Doctrine, créer la db
   * `php bin/console doctrine database:create`
-14. Créer les tables (ou Entity ou Classe) grâce à `php bin/console doctrine make:entity`
+00. Créer les tables (ou Entity ou Classe) grâce à `php bin/console doctrine make:entity`
