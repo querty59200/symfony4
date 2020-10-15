@@ -32,20 +32,25 @@ et adaptez `home.html.twig` à votre besoin
   * une image de bagage
   * un descriptif du bagage
   * un bouton `value="Plus de détails"`
-12. Créer une vue `show.html.twig` permettant d'afficher un bagage
+12. Créer une vue `show.html.twig` héritant de `base.html.twig` permettant d'afficher un bagage
 13. Ajouter une route dans le `PagesController`
 ```php
 /**
 *@Route("/show/12", path="show_bagage")
 */
 ```
-14. Modifier le bouton en ajoutant `href="{{ show_bagage }}`
+14. Modifier le bouton en ajoutant `href="{{ path('show_bagage') }}`
 On travailler ici avec les `paths` et non les URL car la maintenance est facilitée
-
-00. Renseigner les variables  `DATABASE_URL` dans le fichier `.env`
-  * db_user (root)
-  * db_password ()
-  * db_name (rentabag)
-00. Grâce à l'ORM (Object Relation Mapping) Php Doctrine, créer la db
+15. Grâce à l'ORM Php (Object Relational Mapping) Doctrine, CRUD une db est facilité
+  * `Entity` = classe métier
+  * `Manager` = classe permettant de manipuler une entrée (CUD)
+  * `Repository` = classe permettant de lire un table (R)
+  * `Migration` = classe permettant de faire le lien entre les fichiers et SQL
+  * `Fixture` = script créant de fausses entrées dans la db
   * `php bin/console doctrine database:create`
+16. Renseigner les variables  `DATABASE_URL` dans le fichier `.env`
+  * db_user
+  * db_password
+  * db_name
+  * ex : `DATABASE_URL=mysql://`root`:`azerty`@127.0.0.1:3306/`rentabag`?serverVersion=5.7`
 00. Créer les tables (ou Entity ou Classe) grâce à `php bin/console doctrine make:entity`
