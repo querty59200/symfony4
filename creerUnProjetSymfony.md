@@ -90,5 +90,24 @@ class BagageFixtures extends Fixture
   * Charger la fixture dans la db `php bin/console doctrine:fixtures:load`
   * Il est possible de s'aider de la librairie Faker `composer require fzaninotto/faker`
   Nettoyer le cache de composer si nécessaire avant d'installer Faker `composer clearcache`
+  ````php
+  // Ajouter use App\Entity\Bagage
+  class BagageFixtures extends Fixture {
+    public function load(ObjectManager $manager)
+    {
+      $faker = Factory::create('fr_FR');
+
+      for($i = 0; $i < 50; $i++){
+          $user = new User();
+          $user->setFirstname($faker->lastName());
+          $user->setLastname($faker->firstName());
+          $user->setCity($faker->city());
+          $manager->persist($user);
+      }
+
+      $manager->flush();
+  }
+}
+```
 
   
