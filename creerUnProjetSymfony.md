@@ -112,7 +112,7 @@ class BagageFixtures extends Fixture {
 21. Dans `PagesController`, dans la méthode `index()`
 * Créer un lien avec l'entité `$repository = $this->getDoctrine()->getRepository(Bagage::class);`
 * Récupérer l'ensemble des bagages `$bagages = $bagageRepository->findAll();`
-* Insérer la varaible dans la `Response`
+* Insérer la variable dans la `Response`
 22. Dans `index.html.twig`, grâce à un bloc `{% for bagage in bagages %} (...) {{ endfor }}`, on itère les bagages
 * Attention, pour les attributs de type Datetime, il est nécessaire de les piper `{{ bagage.createdAt | date('d M Y') }}`
 * On modifie aussi le `path` du bouton en intégrant la variable `id`dans `<a href="{{ path('show_bagage', {id : bagage.getId()}) }}"`
@@ -122,3 +122,26 @@ class BagageFixtures extends Fixture {
 24. Il est possible d'aller plus loin sur certaines fonction avec 
  * Symfony fait le lien entre le paramètre bagage et {id} grace au @ParamConverter
  * `public function show(Bagage $bagage) : Response` permet de s'affranchir de l'appel au repository et l'appel explicite à la méthode `find($id)`
+25. Création d'un page pour créer un nouveau bagage
+* Création d'un template `create.html.twig`
+* Creation d'un méthode `create() : Response` dans le controller qui va générer un `Form` et l'envoyer au template
+```php
+/**
+ * @Route("/bagage/new", name="create_bagage", methods={"GET"})
+ */
+public function create() : Response {
+    $bagage = new Bagage();
+    $form = $this->createFormBuilder()
+        // Ajout des inputs nécessaires
+        ->add('name')
+        // Génération de l'objet Form
+        ->getForm();
+
+    return $this->render('pages/create.html.twig', [
+        'title' => "RentABag",
+        // Envoie d'un Form simplifié htmlisé
+        'formCreateBagage' => $form->createView()
+    ]);
+}
+```
+* Dans le template, Ajout de `{{ form($formCreateBagage) }}`
