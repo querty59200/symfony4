@@ -116,3 +116,6 @@ class BagageFixtures extends Fixture {
 22. Dans `index.html.twig`, grâce à un bloc `{% for bagage in bagages %} (...) {{ endfor }}`, on itère les bagages
 * Attention, pour les attributs de type Datetime, il est nécessaire de les piper `{{ bagage.createdAt | date('d M Y') }}`
 * On modifie aussi le `path` du bouton en intégrant la variable `id`dans `<a href="{{ path('show_bagage', {id : bagage.getId()}) }}"`
+23. Mettre en place l'injection de dépendances
+ * Elle permet de passer en paramètre le repository à utiliser `public function index(BagageRepository $bagageRepository) : Response`
+ * La ligne `$repository = $this->getDoctrine()->getRepository(Bagage::class);` devient inutile
