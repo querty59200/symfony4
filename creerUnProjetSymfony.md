@@ -119,3 +119,6 @@ class BagageFixtures extends Fixture {
 23. Mettre en place l'injection de dépendances
  * Elle permet de passer en paramètre le repository à utiliser `public function index(BagageRepository $bagageRepository) : Response`
  * La ligne `$repository = $this->getDoctrine()->getRepository(Bagage::class);` devient inutile
+24. Il est possible d'aller plus loin sur certaines fonction avec 
+ * Symfony fait le lien entre le paramètre bagage et {id} grace au @ParamConverter
+ * `public function show(Bagage $bagage) : Response` permet de s'affranchir de l'appel au repository et l'appel explicite à la méthode `find($id)`
