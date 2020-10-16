@@ -111,3 +111,8 @@ class BagageFixtures extends Fixture {
 ```
 21. Dans `PagesController`, dans la méthode `index()`
 * Créer un lien avec l'entité `$repository = $this->getDoctrine()->getRepository(Bagage::class);`
+* Récupérer l'ensemble des bagages `$bagages = $bagageRepository->findAll();`
+* Insérer la varaible dans la `Response`
+22. Dans `index.html.twig`, grâce à un bloc `{% for bagage in bagages %} (...) {{ endfor }}`, on itère les bagages
+* Attention, pour les attributs de type Datetime, il est nécessaire de les piper `{{ bagage.createdAt | date('d M Y') }}`
+* On modifie aussi le `path` du bouton en intégrant la variable `id`dans `<a href="{{ path('show_bagage', {id : bagage.getId()}) }}"`
